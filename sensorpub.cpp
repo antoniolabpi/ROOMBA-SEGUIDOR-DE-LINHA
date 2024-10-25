@@ -37,7 +37,7 @@ public:
         }
 
         // Criando o publisher para publicar no tópico cmd_vel
-        publisher_ = this->create_publisher<geometry_msgs::msg::Twist>("cmd_vel", 10);
+        publisher_ = this->create_publisher<geometry_msgs::msg::Twist>("/diff_cont/cmd_vel_unstamped", 10);
 
         // Criando um timer que chama a função "timer_callback" a cada 500ms
         timer_ = this->create_wall_timer(500ms, std::bind(&SensorPublisher::timer_callback, this));
