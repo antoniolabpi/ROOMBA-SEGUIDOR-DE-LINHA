@@ -82,34 +82,34 @@ private:
 
         double variavel = (P * Kp) + (D * Kd); // Cálculo do controle PID
         auto cmd_vel_msg = geometry_msgs::msg::Twist();
-        cmd_vel_msg.linear.x = 0.5;  // Velocidade linear de 0.5 m/s
+        cmd_vel_msg.linear.x = 0.2;  // Velocidade linear de 0.5 m/s
         cmd_vel_msg.angular.z = 0.0; // Velocidade angular
 
         // Lógica de controle do motor
-        if (sensorValues[0] == 0 && sensorValues[1] == 0 && sensorValues[2] == 1 && sensorValues[3] == 0 && sensorValues[4] == 0)
+        if (sensorValues[0] == 1 && sensorValues[1] == 1 && sensorValues[2] == 0 && sensorValues[3] == 1 && sensorValues[4] == 1)
         {
-            cmd_vel_msg.linear.x = 0.5;  // Mover para frente
+            cmd_vel_msg.linear.x = 0.2;  // Mover para frente
             cmd_vel_msg.angular.z = 0.0;
         }
-        else if (sensorValues[0] == 0 && sensorValues[1] == 1 && sensorValues[2] == 0 && sensorValues[3] == 0 && sensorValues[4] == 0)
+        else if (sensorValues[0] == 1 && sensorValues[1] == 0 && sensorValues[2] == 1 && sensorValues[3] == 1 && sensorValues[4] == 1)
         {
-            cmd_vel_msg.angular.z = variavel * 0.01; // Mover para a esquerda
+            cmd_vel_msg.angular.z = variavel * 0.012; // Mover para a esquerda
         }
-        else if (sensorValues[0] == 1 && sensorValues[1] == 0 && sensorValues[2] == 0 && sensorValues[3] == 0 && sensorValues[4] == 0)
+        else if (sensorValues[0] == 0 && sensorValues[1] == 1 && sensorValues[2] == 1 && sensorValues[3] == 1 && sensorValues[4] == 1)
         {
-            cmd_vel_msg.angular.z = variavel * 0.01; // Mover mais para a esquerda
+            cmd_vel_msg.angular.z = variavel * 0.012; // Mover mais para a esquerda
         }
-        else if (sensorValues[0] == 0 && sensorValues[1] == 0 && sensorValues[2] == 0 && sensorValues[3] == 1 && sensorValues[4] == 0)
+        else if (sensorValues[0] == 1 && sensorValues[1] == 1 && sensorValues[2] == 1 && sensorValues[3] == 0 && sensorValues[4] == 1)
         {
-            cmd_vel_msg.angular.z = -(variavel * 0.01); // Mover para a direita
+            cmd_vel_msg.angular.z = -(variavel * 0.012); // Mover para a direita
         }
-        else if (sensorValues[0] == 0 && sensorValues[1] == 0 && sensorValues[2] == 0 && sensorValues[3] == 0 && sensorValues[4] == 1)
+        else if (sensorValues[0] == 1 && sensorValues[1] == 1 && sensorValues[2] == 1 && sensorValues[3] == 1 && sensorValues[4] == 0)
         {
-            cmd_vel_msg.angular.z = -(variavel * 0.01); // Mover mais para a direita
+            cmd_vel_msg.angular.z = -(variavel * 0.012); // Mover mais para a direita
         }
         else
         {
-            cmd_vel_msg.linear.x = 0.5;  // Mover para frente se todos os sensores forem 0
+            cmd_vel_msg.linear.x = 0.2;  // Mover para frente se todos os sensores forem 0
             cmd_vel_msg.angular.z = 0.0;
         }
 
